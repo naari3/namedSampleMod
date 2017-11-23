@@ -58,3 +58,6 @@ fabric.properties
 ## ForgeGradle
 /run
 *.launch
+
+# OS
+.DS_Store

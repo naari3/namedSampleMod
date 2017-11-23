@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "X",
+    "|"
+  ],
+  "key": {
+    "X": {
+      "item": "namedexamplemod:ruby"
+    },
+    "|": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "namedexamplemod:ruby_sword"
+  }
+}
