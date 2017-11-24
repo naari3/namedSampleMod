@@ -1,8 +1,10 @@
 package com.naari3.exampleMod;
 
+import com.naari3.exampleMod.entity.Entities;
 import com.naari3.exampleMod.entity.EntityDeathBlock;
 import com.naari3.exampleMod.proxy.CommonProxy;
 import com.naari3.exampleMod.render.RenderDeathBlock;
+import com.naari3.exampleMod.util.EntityNames;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -48,21 +50,11 @@ public class ExampleMod {
 
     public static Logger logger;
 
-    public static EntityEntry death_block;
-
-
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        registerCreatures();
         logger = event.getModLog();
         proxy.preInit(event);
-
-        death_block = new EntityEntry(EntityDeathBlock.class, "deathBlock");
-//        ForgeRegistries.ENTITIES.register(death_block);
-
-        EntityRegistry.registerModEntity(new ResourceLocation("namedexamplemod:death_block"), EntityDeathBlock.class, "death_block", 1, this, 1, 1, false);
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-            RenderingRegistry.registerEntityRenderingHandler(EntityDeathBlock.class, RenderDeathBlock::new);
-        }
     }
 
     @Mod.EventHandler
@@ -80,6 +72,10 @@ public class ExampleMod {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
+    }
 
+    private void registerCreatures() {
+        int id = 0;
+        Entities.registerEntity(EntityNames.DEATH_BLOCK, com.naari3.exampleMod.entity.EntityDeathBlock.class, id++, 80, 1, true);
     }
 }

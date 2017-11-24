@@ -26,20 +26,25 @@ public class EntityDeathBlock extends Entity {
 
     public EntityDeathBlock(World worldIn) {
         super(worldIn);
+        this.preventEntitySpawning = true;
+        this.entityCollisionReduction = 1F;
+        this.setSize(0.98F, 0.98F);
     }
 
     public EntityDeathBlock(World worldIn, double x, double y, double z, IBlockState deathBlockState) {
         super(worldIn);
         this.deathTile = deathBlockState;
         this.preventEntitySpawning = true;
+        this.entityCollisionReduction = 1F;
         this.setSize(0.98F, 0.98F);
-        this.setPosition(x, y + (double) ((1.0F - this.height) / 2.0F), z);
+        this.setPosition(x, y, z);
         this.motionX = 0.0D;
         this.motionY = 0.0D;
         this.motionZ = 0.0D;
         this.prevPosX = x;
         this.prevPosY = y;
         this.prevPosZ = z;
+
         this.setOrigin(new BlockPos(this));
     }
 
@@ -57,9 +62,21 @@ public class EntityDeathBlock extends Entity {
     }
 
     @Override
+    protected boolean canTriggerWalking() {
+        return false;
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public boolean canRenderOnFire() {
         return false;
+    }
+
+    @Override
+    public void onUpdate() {
+        if (this.deathTile == null || this.deathTile.getMaterial() == Material.AIR) {
+            this.setDead();
+        }
     }
 
     /**
@@ -99,7 +116,6 @@ public class EntityDeathBlock extends Entity {
         if (block == null || block.getDefaultState().getMaterial() == Material.AIR) {
             this.deathTile = Blocks.SAND.getDefaultState();
         }
-
     }
 
     @SideOnly(Side.CLIENT)

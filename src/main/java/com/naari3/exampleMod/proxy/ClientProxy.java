@@ -1,7 +1,10 @@
 package com.naari3.exampleMod.proxy;
 
 import com.naari3.exampleMod.ExampleMod;
+import com.naari3.exampleMod.entity.EntityDeathBlock;
+import com.naari3.exampleMod.render.RenderDeathBlock;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -13,6 +16,8 @@ public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
         ExampleMod.logger.info("ClientProxy.preInit");
+        RenderingRegistry.registerEntityRenderingHandler(EntityDeathBlock.class, RenderDeathBlock::new);
+        ExampleMod.logger.info("RenderDeathBlocked");
     }
 
     /***
