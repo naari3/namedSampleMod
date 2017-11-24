@@ -9,7 +9,7 @@ public class RubyGuiContainer extends GuiContainer {
     public static final int WIDTH = 180;
     public static final int HEIGHT = 152;
 
-    private static final ResourceLocation background = new ResourceLocation(ExampleMod.MOD_ID, "textures/gui/gui_texture.png");
+    private static final ResourceLocation background = new ResourceLocation(ExampleMod.MODID, "textures/gui/gui_texture.png");
 
     public RubyGuiContainer(RubyContainerTileEntity tileEntity, RubyContainer container) {
         super(container);

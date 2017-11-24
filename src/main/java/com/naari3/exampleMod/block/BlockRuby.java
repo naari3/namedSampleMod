@@ -1,5 +1,7 @@
-package com.naari3.exampleMod;
+package com.naari3.exampleMod.block;
 
+import com.naari3.exampleMod.*;
+import com.naari3.exampleMod.client.ModelRegisterCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -15,13 +17,13 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
-public class rubyBlock extends Block implements ITileEntityProvider {
+public class BlockRuby extends Block implements ITileEntityProvider, ModelRegisterCallback {
 
-    public rubyBlock() {
+    public BlockRuby() {
         super(Material.ROCK);
 
-        setUnlocalizedName("ruby_block");
-        setRegistryName("ruby_block");
+//        setUnlocalizedName("ruby_block");
+//        setRegistryName("ruby_block");
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
         ExampleMod.guiHandler.registerGuiHandler(GuiHandler.GUI_ID_RUBY, new IGuiHandler() {
